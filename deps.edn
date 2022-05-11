@@ -1,0 +1,23 @@
+{:deps {org.clojure/clojure {:mvn/version "1.11.1"}
+        com.fluree/db       {:mvn/version "2.0.0-alpha2"}
+        nrepl/bencode       {:mvn/version "1.1.0"}}
+ :aliases
+ {:pod      {:main-opts ["-m" "pod.fluree.db-impl"]}
+  :pod-repl {:extra-deps {babashka/babashka.pods
+                          {:git/url "https://github.com/babashka/pods.git"
+                           :sha     "c2d6ba847c53b1f6b7986b166a8a4d7dda97db83"}}}
+  :native-image
+  {:main-opts ["-m" "clj.native-image" "pod.fluree.db-impl"
+               "-H:Name=pod-fluree-db"
+               "--initialize-at-build-time"
+               "--report-unsupported-elements-at-runtime"
+               "--no-fallback"
+               ;; not all of these runtime initializations are necessary probably
+               ;; and... there are likely some dupes in there
+               ;; TODO: try paring them down at some point
+               "--initialize-at-run-time=io.netty.handler.ssl.util.ThreadLocalInsecureRandom,io.netty.channel.unix,io.netty.channel.epoll,io.netty.channel.kqueue,org.asynchttpclient.RequestBuilderBase,org.asynchttpclient.ntlm.NtlmEngine,io.netty.channel.kqueue.KQueue,io.netty.channel.kqueue.Native,io.netty.channel.kqueue.KQueueEventLoop,io.netty.channel.kqueue.KQueueEventArray,io.netty.util.internal.logging.Log4JLogger,io.netty.channel.epoll.Epoll,io.netty.channel.epoll.Native,io.netty.channel.epoll.EpollEventLoop,io.netty.channel.epoll.EpollEventArray,io.netty.channel.unix.Errors,io.netty.channel.unix.IovArray,io.netty.channel.unix.Limits,io.netty.channel.DefaultFileRegion,io.netty.handler.ssl.ReferenceCountedOpenSslContext,io.netty.handler.ssl.ReferenceCountedOpenSslEngine,io.netty.handler.ssl.JdkNpnApplicationProtocolNegotiator,io.netty.handler.ssl.JettyNpnSslEngine,io.netty.handler.ssl.ConscryptAlpnSslEngine,io.netty.handler.ssl.JettyAlpnSslEngine$ServerEngine,io.netty.handler.ssl.JettyAlpnSslEngine$ClientEngine,org.httpkit.client.ClientSslEngineFactory$SSLHolder,abracad.avro.ClojureData$Vars,org.apache.lucene.analysis.ja.dict.UnknownDictionary$SingletonHolder,org.apache.lucene.analysis.ja.dict.TokenInfoDictionary$SingletonHolder"]
+   :jvm-opts  ["-Dclojure.compiler.direct-linking=true"]
+   :extra-deps
+   {clj.native-image/clj.native-image
+    {:git/url "https://github.com/taylorwood/clj.native-image.git"
+     :sha     "4604ae76855e09cdabc0a2ecc5a7de2cc5b775d6"}}}}}
