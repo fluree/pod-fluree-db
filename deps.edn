@@ -12,6 +12,7 @@
                "--initialize-at-build-time"
                "--report-unsupported-elements-at-runtime"
                "--no-fallback"
+               "--allow-incomplete-classpath"
                ;; not all of these runtime initializations are necessary probably
                ;; and... there are likely some dupes in there
                ;; TODO: try paring them down at some point
