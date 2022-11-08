@@ -1,5 +1,6 @@
 (ns pod.fluree.db-impl
   (:require [fluree.db.api]
+            [fluree.db.json-ld.api]
             [bencode.core :as bencode]
             [clojure.edn :as edn]
             [clojure.walk :as walk]
@@ -47,7 +48,9 @@
          (name %)
          %)
       {:format     :edn
-       :namespaces [(podify-namespace 'fluree.db.api 'pod.fluree.db)]})))
+       :namespaces [(podify-namespace 'fluree.db.api 'pod.fluree.db)
+                    (podify-namespace 'fluree.db.json-ld.api
+                                      'pod.fluree.json-ld.db)]})))
 
 (defn invoke-fn [id message]
   (let [var      (-> message

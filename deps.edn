@@ -1,5 +1,6 @@
 {:deps {org.clojure/clojure {:mvn/version "1.11.1"}
-        com.fluree/db       {:mvn/version "2.0.0-alpha2"}
+        com.fluree/db       {:git/url "https://github.com/fluree/db.git"
+                             :git/sha "e9f6d47134fe6561187c51eeccd07d6932f57e90"}
         nrepl/bencode       {:mvn/version "1.1.0"}}
  :aliases
  {:pod      {:main-opts ["-m" "pod.fluree.db-impl"]}
