@@ -5,7 +5,7 @@
  {:pod      {:main-opts ["-m" "pod.fluree.db-impl"]}
   :pod-repl {:extra-deps {babashka/babashka.pods
                           {:git/url "https://github.com/babashka/pods.git"
-                           :sha     "c2d6ba847c53b1f6b7986b166a8a4d7dda97db83"}}}
+                           :sha     "decf791000081ca9e6d2fbea9f20a0aa3fae902e"}}}
   :native-image
   {:main-opts ["-m" "clj.native-image" "pod.fluree.db-impl"
                "-H:Name=pod-fluree-db"
