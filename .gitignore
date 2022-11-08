@@ -2,4 +2,4 @@
 /.nrepl-port
 /classes
 /*.build_artifacts.txt
-/pod-fluree-db
+/pod-fluree-db*
